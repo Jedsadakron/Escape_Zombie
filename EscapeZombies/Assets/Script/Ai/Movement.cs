@@ -16,8 +16,6 @@ public class Movement : MonoBehaviour
         Dead,
     }
 
-
-
     //randomMoveRange ระยะเดิน ai
     public float randomMoveRange = 3.0f;
 
@@ -29,8 +27,6 @@ public class Movement : MonoBehaviour
     private NavMeshAgent nav;
     private Animator anima;
     private AIState previosstate;
-
-    public GameObject tracker;
 
     private void Start()
     {
@@ -160,7 +156,6 @@ public class Movement : MonoBehaviour
     private IEnumerator aiMoveAround()
     {
         Vector3 randomPos = Vector3.zero;
-
         randomPos.x = Random.Range(this.transform.position.x - randomMoveRange, this.transform.position.x + randomMoveRange);
         randomPos.y = this.transform.position.y;
         randomPos.z = Random.Range(this.transform.position.z - randomMoveRange, this.transform.position.z + randomMoveRange);
@@ -203,7 +198,7 @@ public class Movement : MonoBehaviour
     {
         anima.SetBool("IsMove", true);
 
-        float randomSpeed = Random.Range(0.25f, 1.5f);
+        float randomSpeed = Random.Range(1.0f, 1.5f);
         nav.speed = randomSpeed;
 
         while (true)
@@ -227,7 +222,7 @@ public class Movement : MonoBehaviour
 
     private IEnumerator aiAttack()
     {
-        status.playerHp -= 10;
+        //status.playerHp -= 10;
 
         int randomIndexAtk = Random.Range(0, 2);
 
@@ -266,10 +261,10 @@ public class Movement : MonoBehaviour
 
         target = damageFrom.GetComponent<PlayerMovement>();
 
-        if (status.IsAlive())
+        /*if (status.IsAlive())
         {
             ChangeState(AIState.TakeDamage);
-        }
+        }*/
     }
 
     public void OnDead()

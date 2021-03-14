@@ -8,9 +8,9 @@ public class Ui : MonoBehaviour
     public GameObject UiPlay;
     public GameObject GamePlay;
     // Start is called before the first frame update
+
     public void StartGameButton()
     {
-
         GamePlay.SetActive(true);
         UiPlay.SetActive(false);
         UiDead.SetActive(false);

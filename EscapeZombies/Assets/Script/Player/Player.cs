@@ -5,17 +5,13 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public float hp;
-    [Range(0, 100)]
-    public float playerHp;
-
     public delegate void DelegateHandleTakeDamage(GameObject dmFrom, float inDm);
     public delegate void DelegateHandleDead();
 
     public event DelegateHandleTakeDamage takeDm;
     public event DelegateHandleDead dead;
 
-    public void TakeDamage(GameObject dmFrom, float inDm)
+    /*public void TakeDamage(GameObject dmFrom, float inDm)
     {
         if (hp > 0)
         {
@@ -40,5 +36,5 @@ public class Player : MonoBehaviour
     public bool IsAlive()
     {
         return hp > 0;
-    }
+    }*/
 }
