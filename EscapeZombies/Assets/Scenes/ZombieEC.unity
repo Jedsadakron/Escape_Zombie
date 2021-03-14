@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 104365886}
   - component: {fileID: 104365892}
   - component: {fileID: 104365890}
+  - component: {fileID: 104365891}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -418,6 +419,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 104365892}
   speed: 10
+--- !u!114 &104365891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104365885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9eb93df9db154e4fbfab701271b44f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
 --- !u!143 &104365892
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1441,6 +1455,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 471689706}
+  - component: {fileID: 471689707}
   m_Layer: 5
   m_Name: Waypoints
   m_TagString: Untagged
@@ -1467,6 +1482,84 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &471689707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 471689705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b749e3718dfe3478e202d33e7a0fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 1515178493}
+  - {fileID: 1045846269}
+  - {fileID: 810454762}
+  - {fileID: 2034635523}
+  - {fileID: 1739497562}
+  - {fileID: 1535970601}
+  - {fileID: 454152165}
+  - {fileID: 1452190554}
+  - {fileID: 393322976}
+  - {fileID: 281517255}
+  - {fileID: 1314201828}
+  - {fileID: 649050355}
+  - {fileID: 1305044980}
+  - {fileID: 196469696}
+  - {fileID: 1660540834}
+  - {fileID: 833329863}
+  links:
+  - node1: {fileID: 1515178493}
+    node2: {fileID: 1045846269}
+    dir: 0
+  - node1: {fileID: 810454762}
+    node2: {fileID: 2034635523}
+    dir: 0
+  - node1: {fileID: 1739497562}
+    node2: {fileID: 1535970601}
+    dir: 0
+  - node1: {fileID: 454152165}
+    node2: {fileID: 1452190554}
+    dir: 0
+  - node1: {fileID: 393322976}
+    node2: {fileID: 281517255}
+    dir: 0
+  - node1: {fileID: 1314201828}
+    node2: {fileID: 649050355}
+    dir: 0
+  - node1: {fileID: 1305044980}
+    node2: {fileID: 196469696}
+    dir: 0
+  - node1: {fileID: 1660540834}
+    node2: {fileID: 833329863}
+    dir: 0
+  - node1: {fileID: 0}
+    node2: {fileID: 0}
+    dir: 0
+  - node1: {fileID: 0}
+    node2: {fileID: 0}
+    dir: 0
+  - node1: {fileID: 0}
+    node2: {fileID: 0}
+    dir: 0
+  - node1: {fileID: 0}
+    node2: {fileID: 0}
+    dir: 0
+  - node1: {fileID: 0}
+    node2: {fileID: 0}
+    dir: 0
+  - node1: {fileID: 0}
+    node2: {fileID: 0}
+    dir: 0
+  - node1: {fileID: 0}
+    node2: {fileID: 0}
+    dir: 0
+  - node1: {fileID: 0}
+    node2: {fileID: 0}
+    dir: 0
 --- !u!1 &478166936
 GameObject:
   m_ObjectHideFlags: 0
