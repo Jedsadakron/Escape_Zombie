@@ -12,8 +12,11 @@ public class Movement : MonoBehaviour
         MoveAround,
         MoveToPlayer,
         Attack,
+        TakeDamage,
         Dead,
     }
+
+
 
     //randomMoveRange ระยะเดิน ai
     public float randomMoveRange = 3.0f;
@@ -27,24 +30,29 @@ public class Movement : MonoBehaviour
     private Animator anima;
     private AIState previosstate;
 
+    public GameObject tracker;
+
     private void Start()
     {
-        //status
-
+        status = FindObjectOfType<Player>();
         nav = this.GetComponent<NavMeshAgent>();
         anima = this.GetComponent<Animator>();
-
         ChangeState(AIState.Idle);
+
     }
 
     private void OnEnable()
     {
-        //status
+        status = this.GetComponent<Player>();
+
+        status.takeDm += OnTakeDamage;
+        status.dead += OnDead;
     }
 
     private void OnDisable()
     {
-        //status
+        status.takeDm -= OnTakeDamage;
+        status.dead -= OnDead;
     }
 
     public void ChangeState(AIState toSetState)
@@ -68,6 +76,7 @@ public class Movement : MonoBehaviour
             case AIState.MoveAround:
                 {
                     StartCoroutine(aiMoveAround());
+
                     break;
                 }
 
@@ -80,6 +89,12 @@ public class Movement : MonoBehaviour
             case AIState.Attack:
                 {
                     StartCoroutine(aiAttack());
+                    break;
+                }
+
+            case AIState.TakeDamage:
+                {
+                    StartCoroutine(aiTakeDamage());
                     break;
                 }
 
@@ -145,6 +160,7 @@ public class Movement : MonoBehaviour
     private IEnumerator aiMoveAround()
     {
         Vector3 randomPos = Vector3.zero;
+
         randomPos.x = Random.Range(this.transform.position.x - randomMoveRange, this.transform.position.x + randomMoveRange);
         randomPos.y = this.transform.position.y;
         randomPos.z = Random.Range(this.transform.position.z - randomMoveRange, this.transform.position.z + randomMoveRange);
@@ -160,6 +176,7 @@ public class Movement : MonoBehaviour
 
             float distFromTarget = Vector3.Distance(targetPos, this.transform.position);
 
+           
             if (distFromTarget > nav.stoppingDistance)
             {
                 nav.SetDestination(targetPos);
@@ -221,6 +238,18 @@ public class Movement : MonoBehaviour
         yield return null;
     }
 
+    private IEnumerator aiTakeDamage()
+    {
+        anima.SetTrigger("IsTakeDamage");
+        float tempSpd = nav.speed;
+        nav.speed = 0.0f;
+        yield return new WaitForSeconds(0.5f);
+        nav.speed = tempSpd;
+
+        ChangeState(AIState.Idle);
+        yield return null;
+    }
+
     private IEnumerator aiDead()
     {
         anima.SetBool("IsDead", true);
@@ -229,6 +258,18 @@ public class Movement : MonoBehaviour
         Destroy(this.gameObject, 4.0f);
 
         yield return null;
+    }
+
+    public void OnTakeDamage(GameObject damageFrom, float inDamage)
+    {
+        //Debug.Log("Zombie take damage : " + inDamage);
+
+        target = damageFrom.GetComponent<PlayerMovement>();
+
+        if (status.IsAlive())
+        {
+            ChangeState(AIState.TakeDamage);
+        }
     }
 
     public void OnDead()
